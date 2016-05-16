@@ -1,10 +1,41 @@
-<mvc:View controllerName="dummenorangeMM.controller.mainview" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
-	xmlns="sap.m">
-	<App>
-		<pages>
-			<Page title="{i18n>title}">
-				<content></content>
-			</Page>
-		</pages>
-	</App>
+<mvc:View controllerName="dummenorangeMM.controller.mainview" xmlns:core="sap.ui.core" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+	<VBox> 
+		<Toolbar>
+			<Button text="Users" press="handleNav">
+				<customData>
+					<core:CustomData key="target" value="UsersPage"/>
+				</customData>
+			</Button>
+			<Button text="Customer" press="handleNav">
+				<customData>
+					<core:CustomData key="target" value="CustomerPage"/>
+				</customData>
+			</Button>
+			<Button text="Planning types and activities" press="handleNav">
+				<customData>
+					<core:CustomData key="target" value="PlanningTypesAndActivitiesPage"/>
+				</customData>
+			</Button>
+			<Button text="Greenhouse bay types" press="handleNav">
+				<customData>
+					<core:CustomData key="target" value="GreenhouseBayTypesPage"/>
+				</customData>
+			</Button>
+			<Button text="Variety base plants" press="handleNav">
+				<customData>
+					<core:CustomData key="target" value="VarietyBasePlansPage"/>
+				</customData>
+			</Button>
+			<Button text="Customer variety base plans" press="handleNav">
+				<customData>
+					<core:CustomData key="target" value="CustomerVarietyBasePlansPage"/>
+				</customData>
+			</Button>
+		</Toolbar>
+		
+		<NavContainer id="navCon">
+		    
+		</NavContainer>
+	</VBox>
 </mvc:View>
