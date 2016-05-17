@@ -1,10 +1,4 @@
 <mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="dummenorangeMM.controller.UsersPage"
 	xmlns:html="http://www.w3.org/1999/xhtml">
-	<App>
-		<pages>
-			<Page title="UserPage">
-				<content></content>
-			</Page>
-		</pages>
-	</App>
+<Label text = "Usersssssssssssssssssss"/>
 </mvc:View>
