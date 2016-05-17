@@ -5,14 +5,67 @@ sap.ui.define([
 
 	return Controller.extend("dummenorangeMM.controller.UsersPage", {
 
-		/**
-		 * Called when a controller is instantiated and its View controls (if available) are already created.
-		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
-		 * @memberOf dummenorangeMM.view.UsersPage
-		 */
-		//	onInit: function() {
-		//
-		//	},
+		_oAddUserDialog: null,
+
+		onInit: function() {
+
+			var oData = {
+				users: [{
+					userCode: "00001",
+					startPlanningDate: new Date(1442955600000),
+					numberWeeksAvailability: 52,
+					growerProductionPlanPattern: "week"
+				}, {
+					userCode: "00002",
+					startPlanningDate: new Date(1442955600000),
+					numberWeeksAvailability: 52,
+					growerProductionPlanPattern: "week"
+				}, {
+					userCode: "00003",
+					startPlanningDate: new Date(1448229600000),
+					numberWeeksAvailability: 52,
+					growerProductionPlanPattern: "week"
+				}, {
+					userCode: "00004",
+					startPlanningDate: new Date(1450821600000),
+					numberWeeksAvailability: 42,
+					growerProductionPlanPattern: "week"
+				}, {
+					userCode: "00005",
+					startPlanningDate: new Date(1442955600000),
+					numberWeeksAvailability: 52,
+					growerProductionPlanPattern: "day"
+				}]
+			};
+
+			var oModel = new sap.ui.model.json.JSONModel(oData);
+			this.getView().setModel(oModel);
+		},
+		onOpenAddUserDialog: function(oEvent) {
+            	this._getAddUserDialog().open();
+		},
+		
+		onAddUser:function() {
+		    	this._getAddUserDialog().close();
+		},
+
+		onEdit: function(oEvent) {
+			console.log("edit");
+		},
+
+		onDelete: function(oEvent) {
+			console.log("Delete");
+		},
+
+		_getAddUserDialog: function() {
+			if (!this._oAddUserDialog) {
+				this._oAddUserDialog = sap.ui.xmlfragment("dummenorangeMM.fragments.AddUserDialog", this);
+				this.getView().addDependent(this._oAddUserDialog);
+			}
+			return this._oAddUserDialog;
+		},
+		
+		
 
 		/**
 		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered

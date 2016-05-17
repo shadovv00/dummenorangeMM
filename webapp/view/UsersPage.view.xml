@@ -1,4 +1,40 @@
-<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="dummenorangeMM.controller.UsersPage"
-	xmlns:html="http://www.w3.org/1999/xhtml">
-<Label text = "Usersssssssssssssssssss"/>
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:t="sap.ui.table"
+	controllerName="dummenorangeMM.controller.UsersPage" xmlns:html="http://www.w3.org/1999/xhtml">
+	<t:Table rows="{/users}" selectionMode="None">
+		<t:columns>
+			<t:Column sortProperty="userCode" width="27%" resizable="false">
+				<Label text="User code"/>
+				<t:template>
+					<Text text="{userCode}"/>
+				</t:template>
+			</t:Column>
+			<t:Column resizable="false" width="27%">
+				<Label text="Start date planning"/>
+				<t:template>
+					<Text text="{ path: 'startPlanningDate', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'yyyy-ww-u' } }"/>
+				</t:template>
+			</t:Column>
+			<t:Column resizable="false" width="18%">
+				<Label text="Number weeks availabylity"/>
+				<t:template>
+					<Text text="{numberWeeksAvailability}"/>
+				</t:template>
+			</t:Column>
+			<t:Column resizable="false" width="20%">
+				<Label text="Grower production plan pattern"/>
+				<t:template>
+					<Text text="{growerProductionPlanPattern}"/>
+				</t:template>
+			</t:Column>
+			<t:Column resizable="false" width="7%">
+				<t:template>
+					<HBox justifyContent="Center">
+						<core:Icon src="sap-icon://employee-rejections" press="onDelete" size="150%"/>
+						<core:Icon src="sap-icon://edit" size="150%" press="onEdit"/>
+					</HBox>
+				</t:template>
+			</t:Column>
+		</t:columns>
+	</t:Table>
+	<Button text="Add user" press="onOpenAddUserDialog" icon="sap-icon://add-contact"/>
 </mvc:View>
