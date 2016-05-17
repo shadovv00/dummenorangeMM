@@ -1,8 +1,51 @@
-<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:lForm="sap.ui.layout.form" xmlns:l="sap.ui.commons.layout">
-<Dialog contentWidth="40%" contentHeight="25%">
-    <Text text="Add User"/>
-    <buttons>
-        <Button text="Add" press="onAddUser"/>
-    </buttons>
-</Dialog>
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:l="sap.ui.commons.layout">
+	<Dialog contentWidth="35%" contentHeight="30%">
+		<customHeader>
+			<Bar>
+				<contentRight>
+					<Button press="onClose" icon="sap-icon://decline"/>
+				</contentRight>
+				<contentLeft>
+					<Title text="Filter"/>
+				</contentLeft>
+			</Bar>
+		</customHeader>
+		<l:MatrixLayout columns="2" widths="40%,60%" id="myLayout" width="100%" layoutFixed="true">
+			<l:MatrixLayoutRow>
+				<l:MatrixLayoutCell>
+					<Text text="User code" class="sapUiMediumMarginBegin"/></l:MatrixLayoutCell>
+				<l:MatrixLayoutCell >
+					<Input id="userCodeInputId" value="{user>/userCode}" width="90%" class="sapUiMediumMarginEnd" change="onUserCodeInput"/>
+				</l:MatrixLayoutCell>
+			</l:MatrixLayoutRow>
+			<l:MatrixLayoutRow>
+				<l:MatrixLayoutCell>
+					<Text text="Start date" class="sapUiMediumMarginBegin"/></l:MatrixLayoutCell>
+				
+				<l:MatrixLayoutCell><DatePicker displayFormat="yyyy-ww-u" valueFormat="yyyy-ww-u" id="startDateDatePickerId" value="{user>/startPlanningDate}"/></l:MatrixLayoutCell>
+			</l:MatrixLayoutRow>
+			<l:MatrixLayoutRow>
+				<l:MatrixLayoutCell>
+					<Text text="Number weeks availability" labelFor="selectId1" class="sapUiMediumMarginBegin"/></l:MatrixLayoutCell>
+				<l:MatrixLayoutCell >
+					<Input id="NumberWeeksInputId" width="90%" value="{user>/numberWeeksAvailability}" class="sapUiMediumMarginEnd" change="onNumberWeeksInput"/>
+				</l:MatrixLayoutCell>
+			</l:MatrixLayoutRow>
+			<l:MatrixLayoutRow>
+				<l:MatrixLayoutCell><Text text="Grower production pattern" class="sapUiMediumMarginBegin"/>
+				</l:MatrixLayoutCell>
+				<l:MatrixLayoutCell>
+					<Select id="growerProductionSelectId" width="90%" class="sapUiMediumMarginEnd" change="onPlanningtypChange">
+						<items>
+							<core:Item key="week" text="week"/>
+							<core:Item key="day" text="day"/>
+						</items>
+					</Select>
+				</l:MatrixLayoutCell>
+			</l:MatrixLayoutRow>
+		</l:MatrixLayout>
+		<buttons>
+			<Button text="Add" press="onAddUser"/>
+		</buttons>
+	</Dialog>
 </core:FragmentDefinition>

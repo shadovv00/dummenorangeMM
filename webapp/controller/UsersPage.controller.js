@@ -42,6 +42,7 @@ sap.ui.define([
 			this.getView().setModel(oModel);
 		},
 		onOpenAddUserDialog: function(oEvent) {
+		    
 			this._getAddUserDialog().open();
 		},
 
@@ -50,7 +51,32 @@ sap.ui.define([
 		},
 
 		onEdit: function(oEvent) {
-			console.log("edit");
+		
+			
+			var sPath = oEvent.getSource().getBindingContext().getPath();
+			var oModel = this.getView().getModel();
+			var oData = oModel.getData();
+			var idx = sPath.substring(sPath.lastIndexOf('/') + 1);
+// 			var newValue = {
+// 			    	userCode: null,
+// 					startPlanningDate: null,
+// 					numberWeeksAvailability: null,
+// 					growerProductionPlanPattern: null
+// 			 };
+        var oUser = oData.users[idx];
+        
+                            
+        console.log(oUser);
+        
+        var oUserModel = new sap.ui.model.json.JSONModel(oUser);
+        this.getView().setModel(oUserModel, "user");
+        
+			this._getAddUserDialog().open();
+			 var oSelector = sap.ui.getCore().byId("growerProductionSelectId");	
+			 oSelector.setSelectedKey(oUser.growerProductionPlanPattern);  	
+			 
+			
+			
 		},
 
 		onDelete: function(oEvent) {
@@ -64,6 +90,9 @@ sap.ui.define([
 			oModel.setData(oData);
 		},
 
+        onClose:function() {
+            this._getAddUserDialog().close();
+        },
 		_getAddUserDialog: function() {
 			if (!this._oAddUserDialog) {
 				this._oAddUserDialog = sap.ui.xmlfragment("dummenorangeMM.fragments.AddUserDialog", this);
