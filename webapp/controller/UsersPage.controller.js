@@ -42,11 +42,11 @@ sap.ui.define([
 			this.getView().setModel(oModel);
 		},
 		onOpenAddUserDialog: function(oEvent) {
-            	this._getAddUserDialog().open();
+			this._getAddUserDialog().open();
 		},
-		
-		onAddUser:function() {
-		    	this._getAddUserDialog().close();
+
+		onAddUser: function() {
+			this._getAddUserDialog().close();
 		},
 
 		onEdit: function(oEvent) {
@@ -54,7 +54,14 @@ sap.ui.define([
 		},
 
 		onDelete: function(oEvent) {
-			console.log("Delete");
+
+			var sPath = oEvent.getSource().getBindingContext().getPath();
+			var oModel = this.getView().getModel();
+			var oData = oModel.getData();
+			var idx = sPath.substring(sPath.lastIndexOf('/') + 1);
+
+			oData.users.splice(idx, 1);
+			oModel.setData(oData);
 		},
 
 		_getAddUserDialog: function() {
@@ -64,8 +71,6 @@ sap.ui.define([
 			}
 			return this._oAddUserDialog;
 		},
-		
-		
 
 		/**
 		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
