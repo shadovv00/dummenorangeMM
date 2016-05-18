@@ -6,7 +6,7 @@
 					<Button press="onClose" icon="sap-icon://decline"/>
 				</contentRight>
 				<contentLeft>
-					<Title text="Filter"/>
+					<Title id="titleId"/>
 				</contentLeft>
 			</Bar>
 		</customHeader>
@@ -21,8 +21,8 @@
 			<l:MatrixLayoutRow>
 				<l:MatrixLayoutCell>
 					<Text text="Start date" class="sapUiMediumMarginBegin"/></l:MatrixLayoutCell>
-				
-				<l:MatrixLayoutCell><DatePicker displayFormat="yyyy-ww-u" valueFormat="yyyy-ww-u" id="startDateDatePickerId" value="{user>/startPlanningDate}"/></l:MatrixLayoutCell>
+				<l:MatrixLayoutCell><DatePicker id="startDateDatePickerId" width="90%" valueFormat="yyyy-ww-u" displayFormat="yyyy-ww-u"
+					dateValue="{ path: 'user>/startPlanningDate' }"/></l:MatrixLayoutCell>
 			</l:MatrixLayoutRow>
 			<l:MatrixLayoutRow>
 				<l:MatrixLayoutCell>
@@ -37,6 +37,7 @@
 				<l:MatrixLayoutCell>
 					<Select id="growerProductionSelectId" width="90%" class="sapUiMediumMarginEnd" change="onPlanningtypChange">
 						<items>
+							<core:Item key="-" text="-"/>
 							<core:Item key="week" text="week"/>
 							<core:Item key="day" text="day"/>
 						</items>
@@ -45,7 +46,8 @@
 			</l:MatrixLayoutRow>
 		</l:MatrixLayout>
 		<buttons>
-			<Button text="Add" press="onAddUser"/>
+			<Button id="addButtonId" text="Add" press="onAddUser"/>
+			<Button id="editButtonId" text="Edit" press="onEditUser"/>
 		</buttons>
 	</Dialog>
 </core:FragmentDefinition>
