@@ -1,4 +1,28 @@
-<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
-	controllerName="dummenorangeMM.controller.CustomerPage" xmlns:html="http://www.w3.org/1999/xhtml">
-
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="dummenorangeMM.controller.CustomerPage"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<HBox>
+		<VBox>
+			<Text text="Customer"/>
+			<HBox>
+				<List width="100px"  items = "{growAdvisor>/customers}">
+				    <CustomListItem press="onItemSelect" type="Active">
+				        <Text text="{growAdvisor>id}"/>
+				    </CustomListItem>
+				</List>
+					<VBox justifyContent="Center" class="sapUiSmallMarginBegin">
+							<Text id="nameTextId" text="{growAdvisor>/customers/0/growerName}" class="texts-font thick"/>
+							<Text id="streetTextId" text="{growAdvisor>/customers/0/address/street}" class="texts-font"/>
+							<Text id="cityTextId" text="{growAdvisor>/customers/0/address/city}" class="texts-font"/>
+							<Text id="phoneTextId" text="{growAdvisor>/customers/0/phone}" class="texts-font"/>
+							    <HBox>
+							        <Text/>
+							            <Select id="growAdvisorSelectorId" items="{growerAdvisorsList>/List}" width="100%" class="sapUiSmallMarginEnd" change="onCustRepresChange">
+							                <core:Item key="{growerAdvisorsList>name}" text="{growerAdvisorsList>name}"/>
+							            </Select>
+							    </HBox>
+						</VBox>
+			</HBox>
+		</VBox>
+		<VBox></VBox>
+	</HBox>
 </mvc:View>
