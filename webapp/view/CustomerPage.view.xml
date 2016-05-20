@@ -4,8 +4,8 @@
 		<VBox class="sapUiLargeMarginEnd">
 			<Text text="Customer"/>
 			<HBox>
-				<List width="100px" items="{growAdvisor>/customers}" >
-					<CustomListItem press="onCustomerItemSelect" type="Active">
+				<List id="customerListId" width="100px" selectionChange="onCustomerItemSelect"  mode="SingleSelectMaster" items="{growAdvisor>customers}" >
+					<CustomListItem press="onCustomerItemSelect">
 						<Text text="{growAdvisor>id}"/>
 					</CustomListItem>
 				</List>
@@ -16,9 +16,9 @@
 					<Text id="phoneTextId" text="{growAdvisor>phone}" class="texts-font"/>
 					<HBox alignItems="Center" alignContent="SpaceBetween">
 						<Text text="Grower Advisor"/>
-						<Select id="growAdvisorSelectorId" items="{growerAdvisorsList>/List}" width="1000%" maxWidth="1000%" class="sapUiSmallMarginBegin"
+						<Select id="growAdvisorSelectorId" items="{growAdvisor>/growerAdvisors}" width="1000%" maxWidth="1000%" class="sapUiSmallMarginBegin"
 							change="onCustRepresChange">
-							<core:Item key="{growerAdvisorsList>name}" text="{growerAdvisorsList>name}"/>
+							<core:Item key="{growAdvisor>name}" text="{growAdvisor>name}"/>
 						</Select>
 					</HBox>
 				</VBox>
@@ -27,9 +27,9 @@
 		<VBox class="sapUiLargeMarginBegin">
 			<Text text="Delivery address"/>
 			<HBox>
-				<List width="100px" items="{growAdvisor>greenHouse}" id="greenHouseListId">
+				<List id="greenHouseListId" width="100px" items="{growAdvisor>greenHouse}" selectionChange="onGreenHouseSelect"  mode="SingleSelectMaster"  >
 					<items>
-						<CustomListItem type="Active" press="onGreenHouseSelect">
+						<CustomListItem >
 							<Text text="{growAdvisor>id}"/>
 						</CustomListItem>
 					</items>
