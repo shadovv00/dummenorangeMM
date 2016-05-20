@@ -39,6 +39,7 @@ sap.ui.define([
 						phone: "0612345678",
 						greenHouse: [{
 							id: "001",
+							name: "Van Os Chrysanten C.V.",
 							address: {
 								street: "Harenwert 48",
 								city: "1000 AA Maasland"
@@ -74,6 +75,7 @@ sap.ui.define([
 
 						}, {
 							id: "002",
+							name: "Van Os Chrysanten C.V.",
 							address: {
 								street: "Aallaan 306",
 								city: "1000 AA Maasland"
@@ -118,6 +120,7 @@ sap.ui.define([
 						phone: "0612345678",
 						greenHouse: [{
 							id: "001",
+							name: "Van Os Chrysanten C.V.",
 							address: {
 								street: "Laankade 15",
 								city: "1000 AA Midelburg"
@@ -157,35 +160,55 @@ sap.ui.define([
 			};
 
 			var oGrowerAdvisorModel = new sap.ui.model.json.JSONModel(this.oData.growerAdvisors[0]);
-// 			var oGrowerModel = new sap.ui.model.json.JSONModel(this.oData.growerAdvisors[0].customers[0]);
+			// 			var oGrowerModel = new sap.ui.model.json.JSONModel(this.oData.growerAdvisors[0].customers[0]);
 			console.log(oGrowerAdvisorModel);
 			this.getView().setModel(oGrowerAdvisorModel, "growAdvisor");
 
 		},
 
-		onItemSelect: function(oEvent) {
+		onCustomerItemSelect: function(oEvent) {
+           
 
 			var sPath = oEvent.getSource().getBindingContext("growAdvisor").getPath();
-			var idx = sPath.substring(sPath.lastIndexOf('/') + 1);
-			console.log(idx);
+			console.log(sPath);
 
-			var sNamePath = "/customers/" + idx + "/growerName";
-			var sStreetPath = "/customers/" + idx + "/address/street";
-			var sCityPath = "/customers/" + idx + "/address/city";
-			var sPhonePath = "/customers/" + idx + "/phone";
-            
-            var oModel = this.getView().getModel("growAdvisor");
-            var name = oModel.getProperty(sNamePath) +1;
-            
-            console.log(oModel);
-            console.log(name);
-            
-            // this.getView().byId("nameTextId").setText(this.getView().getModel("growAdvisor").getProperty(sNamePath));
-            
-			this.getView().byId("nameTextId").setText(name);
-			this.getView().byId("streetTextId").setText(this.getView().getModel("growAdvisor").getProperty(sStreetPath));
-			this.getView().byId("cityTextId").setText(this.getView().getModel("growAdvisor").getProperty(sCityPath));
-			this.getView().byId("phoneTextId").setText(this.getView().getModel("growAdvisor").getProperty(sPhonePath));
+
+			var oVBox = this.getView().byId("customerDataVBoxId");
+
+			oVBox.bindElement({
+				path: sPath,
+				model: "growAdvisor"
+			});
+			console.log(oVBox);
+
+
+			var oList = this.getView().byId("greenHouseListId");
+
+			oList.bindObject({
+				path: sPath,
+				model: "growAdvisor"
+			});
+
+			console.log(oList);
+		},
+
+		onGreenHouseSelect: function(oEvent) {
+			var sPath = oEvent.getSource().getBindingContext("growAdvisor").getPath();
+			console.log(sPath);
+
+			var oVBox = this.getView().byId("greenhouseDataVBoxId");
+
+			oVBox.bindElement({
+				path: sPath,
+				model: "growAdvisor"
+			});
+			console.log(oVBox);
+			
+			var oTable = this.getView().byId("baysTableId");
+			oTable.bindElement({
+				path: sPath,
+				model: "growAdvisor"
+			});
 		},
 
 		/**
