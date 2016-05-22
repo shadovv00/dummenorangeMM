@@ -1,28 +1,83 @@
-<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="dummenorangeMM.controller.CustomerPage"
-	xmlns:html="http://www.w3.org/1999/xhtml">
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:t="sap.ui.table"
+	controllerName="dummenorangeMM.controller.CustomerPage" xmlns:html="http://www.w3.org/1999/xhtml">
 	<HBox>
-		<VBox>
+		<VBox class="sapUiLargeMarginEnd">
 			<Text text="Customer"/>
 			<HBox>
-				<List width="100px"  items = "{growAdvisor>/customers}">
-				    <CustomListItem press="onItemSelect" type="Active">
-				        <Text text="{growAdvisor>id}"/>
-				    </CustomListItem>
+				<List id="customerListId" width="100px" selectionChange="onCustomerItemSelect"  mode="SingleSelectMaster" items="{growAdvisor>customers}" >
+					<CustomListItem press="onCustomerItemSelect">
+						<Text text="{growAdvisor>id}"/>
+					</CustomListItem>
 				</List>
-					<VBox justifyContent="Center" class="sapUiSmallMarginBegin">
-							<Text id="nameTextId" text="{growAdvisor>/customers/0/growerName}" class="texts-font thick"/>
-							<Text id="streetTextId" text="{growAdvisor>/customers/0/address/street}" class="texts-font"/>
-							<Text id="cityTextId" text="{growAdvisor>/customers/0/address/city}" class="texts-font"/>
-							<Text id="phoneTextId" text="{growAdvisor>/customers/0/phone}" class="texts-font"/>
-							    <HBox>
-							        <Text/>
-							            <Select id="growAdvisorSelectorId" items="{growerAdvisorsList>/List}" width="100%" class="sapUiSmallMarginEnd" change="onCustRepresChange">
-							                <core:Item key="{growerAdvisorsList>name}" text="{growerAdvisorsList>name}"/>
-							            </Select>
-							    </HBox>
-						</VBox>
+				<VBox justifyContent="Center" id="customerDataVBoxId" class="sapUiSmallMarginBegin">
+					<Text id="nameTextId" text="{growAdvisor>growerName}" class="texts-font thick"/>
+					<Text id="streetTextId" text="{growAdvisor>address/street}" class="texts-font"/>
+					<Text id="cityTextId" text="{growAdvisor>address/city}" class="texts-font"/>
+					<Text id="phoneTextId" text="{growAdvisor>phone}" class="texts-font"/>
+					<HBox alignItems="Center" alignContent="SpaceBetween">
+						<Text text="Grower Advisor"/>
+						<Select id="growAdvisorSelectorId" items="{growAdvisor>/growerAdvisors}" width="1000%" maxWidth="1000%" class="sapUiSmallMarginBegin"
+							change="onCustRepresChange">
+							<core:Item key="{growAdvisor>name}" text="{growAdvisor>name}"/>
+						</Select>
+					</HBox>
+				</VBox>
 			</HBox>
 		</VBox>
-		<VBox></VBox>
+		<VBox class="sapUiLargeMarginBegin">
+			<Text text="Delivery address"/>
+			<HBox>
+				<List id="greenHouseListId" width="100px" items="{growAdvisor>greenHouse}" selectionChange="onGreenHouseSelect"  mode="SingleSelectMaster"  >
+					<items>
+						<CustomListItem >
+							<Text text="{growAdvisor>id}"/>
+						</CustomListItem>
+					</items>
+				</List>
+				<VBox justifyContent="Center" id="greenhouseDataVBoxId" class="sapUiSmallMarginBegin">
+					<Text text="{growAdvisor>name}" class="texts-font thick"/>
+					<HBox >
+						<Text text="{growAdvisor>address/street}" class="texts-font"/>
+						<Text text="Default M2 {growAdvisor>defaultM2}" class="texts-font"/>
+					</HBox>
+					<Text text="{growAdvisor>address/city}" class="texts-font"/>
+					<Text text="{growAdvisor>phone}" class="texts-font"/>
+				</VBox>
+			</HBox>
+		</VBox>
 	</HBox>
+	<Label text="Bays in greenhouse"/>
+	<t:Table id="baysTableId" rows="{growAdvisor>bays}" selectionMode="None">
+		<t:columns>
+			<t:Column sortProperty="growAdvisor>id" width="27%" resizable="false">
+				<Label text="Greenhouse bay"/>
+				<t:template>
+					<Text text="{growAdvisor>id}"/>
+				</t:template>
+			</t:Column>
+			<t:Column resizable="false" width="27%">
+				<Label text="Description"/>
+				<t:template>
+					<Text text="{growAdvisor>description}"/>
+				</t:template>
+			</t:Column>
+			<t:Column resizable="false" width="18%">
+				<Label text="M2"/>
+				<t:template>
+					<Text text="{growAdvisor>M2}"/>
+				</t:template>
+			</t:Column>
+			<t:Column resizable="false" width="20%">
+				<Label text="Active"/>
+				<t:template>
+					<CheckBox selected="{growAdvisor>active}"/>
+				</t:template>
+			</t:Column>
+			<t:Column resizable="false" width="7%">
+				<t:template>
+					<core:Icon src="sap-icon://edit" size="150%" press="onEdit"/>
+				</t:template>
+			</t:Column>
+		</t:columns>
+	</t:Table>
 </mvc:View>
