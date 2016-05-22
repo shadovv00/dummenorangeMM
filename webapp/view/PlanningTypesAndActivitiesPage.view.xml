@@ -48,7 +48,7 @@
 	<Button text="Add planning type"  icon="sap-icon://add"/>
 	</Panel>
 	<Panel>
-	<t:Table id="activityTypeTable"  selectionMode="Single" selectionBehavior="Row" rowSelectionChange="onPlanningRowSelect"   >
+	<t:Table id="activityTypeTable" rows="{planningModel>/Planning/0/activities}" selectionMode="Single" selectionBehavior="Row" rowSelectionChange="onPlanningRowSelect"   >
 		<t:columns>
 			<t:Column sortProperty="activity_type"  >
 				<Label text="Activity type"/>
