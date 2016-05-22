@@ -3,7 +3,7 @@
 
 			<!--<Label text = "PlanningTypesAndActivitiesPage"/>-->
 	<Panel>
-	<t:Table rows="{planningModel>/Planning}" selectionMode="Single" selectionBehavior="Row">
+	<t:Table id="planningTypeTable" rows="{planningModel>/Planning}" selectionMode="Single" selectionBehavior="Row" rowSelectionChange="onPlanningRowSelect"   >
 		<t:columns>
 			<t:Column sortProperty="planning_type"  >
 				<Label text="Planning type"/>
@@ -45,8 +45,58 @@
 			</t:Column>
 		</t:columns>
 	</t:Table>
-	<Button text="Add user" press="onOpenAddUserDialog" icon="sap-icon://add"/>
-	    
+	<Button text="Add planning type"  icon="sap-icon://add"/>
+	</Panel>
+	<Panel>
+	<t:Table id="activityTypeTable"  selectionMode="Single" selectionBehavior="Row" rowSelectionChange="onPlanningRowSelect"   >
+		<t:columns>
+			<t:Column sortProperty="activity_type"  >
+				<Label text="Activity type"/>
+				<t:template>
+					<Text text="{planningModel>activity_type}"/>
+				</t:template>
+			</t:Column>
+			<t:Column  >
+				<Label text="Language"/>
+				<t:template>
+					<Text text="{planningModel>language}"/>
+				</t:template>
+			</t:Column>
+			<t:Column sortProperty="sort_key"  >
+				<Label text="Sort key"/>
+				<t:template>
+					<Text text="{planningModel>sort_key}"/>
+				</t:template>
+			</t:Column>
+			<t:Column >
+				<Label text="Description"/>
+				<t:template>
+					<Text text="{planningModel>description}"/>
+				</t:template>
+			</t:Column>
+			<t:Column >
+				<Label text="Plan Date"/>
+				<t:template>
+					<CheckBox selected ="{planningModel>plan_date}"/>
+				</t:template>
+			</t:Column>
+			<t:Column >
+				<Label text="Wait"/>
+				<t:template>
+					<CheckBox selected ="{planningModel>wait}"/>
+				</t:template>
+			</t:Column>
+			<t:Column resizable="false" width="7%">
+				<t:template>
+					<HBox justifyContent="Center">
+						<core:Icon src="sap-icon://delete" press="onDelete" size="150%"/>
+						<core:Icon src="sap-icon://edit" size="150%" press="onEdit"/>
+					</HBox>
+				</t:template>
+			</t:Column>
+		</t:columns>
+	</t:Table>
+	<Button text="Add activity type"  icon="sap-icon://add"/>
 	</Panel>
 
 </mvc:View>
